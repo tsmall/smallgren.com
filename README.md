@@ -30,6 +30,8 @@ on [his blog][along came betty].)
 
 ## Contributing
 
+### Commit Messages
+
 This project follow's [Angular's commit message format][commit format].
 Refer to the linked document for the full details.
 But here's a quick reference:
@@ -54,6 +56,30 @@ The type must be one of the following:
   or auxiliary tools and libraries
   such as documentation generation
 
+### Issues
+
+This project uses a text file in [GNU Recutils][] format to track issues.
+These include both enhancements and defects.
+This way we get a bug database that
+(a) is easy to manage in a text editor,
+(b) lives in the repository,
+and (c) can still be flexibly queried.
+
+Here are a few useful queries.
+Note that you have to have recutils installed.
+
+    $ # Show all open enhancements.
+    $ recsel -e "Type = 'Enhancement' && Status != 'Closed'" issues.rec
+
+    $ # Show all open defects.
+    $ recsel -e "Type = 'Enhancement' && Status != 'Closed'" issues.rec
+
+    $ # Count the number of open issues by type.
+    $ recsel -e "Status != 'Closed'" -p "Type,Count(ID):Count" -G "Type" issues.rec
+
+    $ # Verify there are no syntactic or formatting problems.
+    $ recfix --check issues.rec
+
 ## License
 
 Copyright © 2016 Tom Small III.
@@ -64,4 +90,5 @@ Distributed under the Eclipse Public License, the same as Clojure.
 <!-- References -->
 [along came betty]: http://blog.darevay.com/2010/11/compojure-the-repl-and-vars/
 [commit format]: https://gist.github.com/brianclements/841ea7bffdb01346392c
+[gnu recutils]: https://www.gnu.org/software/recutils/
 [leiningen]: https://github.com/technomancy/leiningen
