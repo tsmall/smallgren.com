@@ -84,11 +84,12 @@ Note that you have to have recutils installed.
 
 Copyright © 2016 Tom Small III.
 
-Distributed under the Eclipse Public License, the same as Clojure.
+Distributed under the [Eclipse Public License][epl], the same as Clojure.
 
 
 <!-- References -->
 [along came betty]: http://blog.darevay.com/2010/11/compojure-the-repl-and-vars/
 [commit format]: https://gist.github.com/brianclements/841ea7bffdb01346392c
+[epl]: https://eclipse.org/org/documents/epl-v10.php
 [gnu recutils]: https://www.gnu.org/software/recutils/
 [leiningen]: https://github.com/technomancy/leiningen
