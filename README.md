@@ -25,6 +25,9 @@ And you can stop it and restart it:
     user=> (.stop server)
     user=> (def server (run {:join? false}))
 
+(Thanks to Dave Ray for explaining how to do that
+on [his blog][along came betty].)
+
 ## Contributing
 
 This project follow's [Angular's commit message format][commit format].
@@ -59,5 +62,6 @@ Distributed under the Eclipse Public License, the same as Clojure.
 
 
 <!-- References -->
+[along came betty]: http://blog.darevay.com/2010/11/compojure-the-repl-and-vars/
 [commit format]: https://gist.github.com/brianclements/841ea7bffdb01346392c
 [leiningen]: https://github.com/technomancy/leiningen
