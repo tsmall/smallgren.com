@@ -15,3 +15,10 @@
   [options]
   (let [options (merge {:port 8080 :join? true} options)]
     (jetty/run-jetty (var app) options)))
+
+(defn -main
+  [& [port]]
+  (let [port (Integer. (or port
+                           (System/getenv "PORT")
+                           5000))]
+    (run {:port port :join? false})))
