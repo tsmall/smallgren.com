@@ -17,7 +17,7 @@ To start a web server for the application, run:
 
 You can also run the web server from within a REPL:
 
-    user=> (use 'wedding-site.handler :reload)
+    user=> (use 'wedding-site.core :reload)
     user=> (def server (run {:join? false}))
 
 And you can stop it and restart it:

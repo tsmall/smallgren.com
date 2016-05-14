@@ -1,7 +1,7 @@
 (defproject wedding-site "0.1.0-SNAPSHOT"
   :description "Run your own wedding reception website."
   :url "https://github.com/tsmall/wedding-site"
-  :main wedding-site.handler
+  :main wedding-site.core
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [compojure "1.4.0"]
