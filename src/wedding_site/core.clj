@@ -10,6 +10,6 @@
 
 (defn -main
   []
-  (let [port (Integer. (or port (System/getenv "PORT") "8080"))]
+  (let [port (Integer. (or (System/getenv "PORT") "8080"))]
     (run {:port port
           :join? false})))
