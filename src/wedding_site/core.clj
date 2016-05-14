@@ -1,4 +1,5 @@
 (ns wedding-site.core
+  (:gen-class :main true)
   (:require [ring.adapter.jetty :as jetty]
             [wedding-site.handler :as handler]))
 
@@ -8,8 +9,7 @@
     (jetty/run-jetty (var handler/app) options)))
 
 (defn -main
-  [& [port]]
-  (let [port (Integer. (or port
-                           (System/getenv "PORT")
-                           5000))]
-    (run {:port port :join? false})))
+  []
+  (let [port (Integer. (or port (System/getenv "PORT") "8080"))]
+    (run {:port port
+          :join? false})))

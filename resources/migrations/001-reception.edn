@@ -1,0 +1,13 @@
+;; Create the reception relation.
+{:up
+ ["CREATE TABLE reception
+     ( city varchar(100) not null
+     , state varchar(2) not null
+     , day date not null
+     , info text not null
+     , UNIQUE ( city , state )
+     , UNIQUE ( day )
+     );"]
+
+ :down
+ ["DROP TABLE reception;"]}
