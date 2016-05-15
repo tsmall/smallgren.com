@@ -30,6 +30,14 @@ on [his blog][along came betty].)
 
 ## Contributing
 
+### Code Style
+
+This project uses ideas from both [SMACSS][] and [BEM][].
+From SMACSS I've taken the idea of categories of styles.
+So far I'm using the "Base" and "Module" categories.
+I've taken the rest of the ideas from BEM.
+In particular I've chosen to adopt their naming conventions.
+
 ### Commit Messages
 
 This project follow's [Angular's commit message format][commit format].
@@ -89,7 +97,9 @@ Distributed under the [Eclipse Public License][epl], the same as Clojure.
 
 <!-- References -->
 [along came betty]: http://blog.darevay.com/2010/11/compojure-the-repl-and-vars/
+[bem]: https://en.bem.info
 [commit format]: https://gist.github.com/brianclements/841ea7bffdb01346392c
 [epl]: https://eclipse.org/org/documents/epl-v10.php
 [gnu recutils]: https://www.gnu.org/software/recutils/
 [leiningen]: https://github.com/technomancy/leiningen
+[smacss]: https://smacss.com
