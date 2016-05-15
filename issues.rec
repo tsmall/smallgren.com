@@ -81,7 +81,8 @@ Description: As a host
 ID: 9
 Title: Guests can see receptions
 Type: Enhancement
-Status: New
+Status: Closed
+Reason: Done
 Description: As a guest
 + I want to see all of the receptions
 + So I can find the one closest to me.
