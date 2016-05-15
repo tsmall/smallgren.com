@@ -15,7 +15,7 @@
 ID: 1
 Title: Hosts can add receptions
 Type: Enhancement
-Status: New
+Status: Started
 Description: As a host
 + I want to add a new reception to the trip
 + So guests will know that it's available.
