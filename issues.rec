@@ -142,3 +142,19 @@ Status: New
 Description: As a guest
 + I want to be able to do everything from my phone
 + So I can update or see information when I'm away from my computer.
+
+ID: 17
+Title: Set primary key on reception table
+Type: Defect
+Status: New
+Description: PostgreSQL doesn't like having tables without primary keys.
++ Set a primary key for that table, and all new tables going forward.
+
+ID: 18
+Title: Use a custom font
+Type: Enhancement
+Status: New
+Description: As a host
++ I want to use a custom font
++ So it reflects the style and tone I want to set
++ And so the site looks more distinctive.
