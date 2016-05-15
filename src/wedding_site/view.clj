@@ -11,16 +11,21 @@
     (h/html5
      [:head
       [:meta {:charset "utf-8"}]
-      [:title "Receptions"]]
+      [:title "Reception tour"]
+      (h/include-css "/r/styles/wedding.css")]
      [:body
-      [:h1 "Receptions"]
-      [:table
-       [:thead
-        [:tr
-         [:th "When"]
-         [:th "Where"]]]
-       [:tbody
+      [:header
+       [:h1.page-title "Reception tour"]]
+      [:section#intro
+       [:p
+        "We're going on a road trip right after our wedding, "
+        "so we can celebrate with our family and friends. "]
+       [:p
+        "We'll keep this page updated with the latest information. "
+        "We hope you can join us!"]]
+      [:section#reception-list
+       [:ol.item-list
         (for [r receptions-by-date]
-          [:tr
-           [:td (utils/formatted-date (:day r))]
-           [:td (:city r) ", " (:state r)]])]]])))
+          [:li.item-list__item
+           [:h1.item-list__heading (:city r) ", " (:state r)]
+           [:h2.item-list__subhead (utils/formatted-date (:day r))]])]]])))

@@ -7,6 +7,7 @@
 (defroutes app-routes
   (GET "/" [] "Hello World")
   (GET "/receptions" [] (view/reception-list))
+  (route/resources "/r")
   (route/not-found "Not Found"))
 
 (def app

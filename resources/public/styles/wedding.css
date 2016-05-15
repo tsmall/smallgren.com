@@ -1,0 +1,85 @@
+/* Base styles -------------------------------------------------------------- */
+
+* {
+    font-weight: normal;
+}
+
+body {
+    font: 18px Georgia, serif;
+    line-height: 1.5rem;
+
+    background-color: #e9e9db;
+    color: #0f0f0f;
+
+    margin: 0;
+    padding: 0;
+    max-width: 30rem;
+}
+
+h1, h2,
+ol,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2,
+p {
+    padding: 0.7rem 0.7rem;
+}
+
+p {
+    max-width: 25rem;
+}
+
+@media all and (min-width: 600px) {
+    body {
+        margin-left: 3rem;
+    }
+}
+
+/* Module styles ------------------------------------------------------------ */
+
+.page-title {
+    font-size: 2rem;
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.item-list {
+    list-style-type: none;
+}
+
+/* Add spacing and line separators between list items. Split the full desired
+   spacing between margin and padding. That way the horizontal lines are
+   halfway between the list items. Also include the spacing and horizontal line
+   after the last element. */
+.item-list__item {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+
+    border-top: 1px solid #c5c3c3;
+}
+.item-list__item:last-child {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    border-bottom: 1px solid #c5c3c3;
+}
+
+.item-list__heading {
+    font-size: 1.3rem;
+
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.item-list__subhead {
+    font-size: 1rem;
+
+    color: #686868;
+
+    padding-top: 0;
+    padding-bottom: 0;
+}
