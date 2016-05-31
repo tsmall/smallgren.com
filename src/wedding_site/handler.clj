@@ -6,7 +6,9 @@
 
 (defroutes app-routes
   (GET "/" [] "Hello World")
-  (GET "/receptions" [] (view/reception-list))
+  (GET "/wedding" [] (view/wedding-home))
+  (GET "/wedding/road-trip" [] (view/road-trip))
+  (GET "/wedding/story" [] (view/wedding-story))
   (route/resources "/r")
   (route/not-found "Not Found"))
 
