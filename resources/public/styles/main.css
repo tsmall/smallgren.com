@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #e9e9db;
+    background-color: #b8c6bd;
     color: #0f0f0f;
 
     margin: 0;
@@ -16,15 +16,16 @@ body {
 }
 
 h1, h2,
-ol,
+ol, ul,
 p {
     margin: 0;
     padding: 0;
 }
 
 h1, h2,
+ul,
 p {
-    padding: 0.7rem 0.7rem;
+    padding: 0.7rem;
 }
 
 p {
