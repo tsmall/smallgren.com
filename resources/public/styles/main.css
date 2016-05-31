@@ -60,6 +60,23 @@ h1 {
     padding-bottom: 2rem;
 }
 
+.nav-bar {
+    background-color: #93a198;
+    margin-bottom: 1rem;
+}
+
+.nav-bar__item {
+    display: inline;
+}
+
+.nav-bar__item + .nav-bar__item {
+    padding-left: 1.4rem;
+}
+
+.nav-bar__link {
+    text-decoration: none;
+}
+
 .item-list {
     list-style-type: none;
 }
