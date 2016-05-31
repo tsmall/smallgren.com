@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Fira+Sans:300italic,300);
+
 /* Base styles -------------------------------------------------------------- */
 
 * {
@@ -5,9 +7,6 @@
 }
 
 body {
-    font: 18px Georgia, serif;
-    line-height: 1.5rem;
-
     background-color: #e9e9db;
     color: #0f0f0f;
 
@@ -38,13 +37,27 @@ p {
     }
 }
 
+/* Typography --------------------------------------------------------------- */
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.5rem;
+}
+
+h1 {
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+}
+
 /* Module styles ------------------------------------------------------------ */
 
 .page-title {
-    font-size: 2rem;
+    font-size: 3rem;
 
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .item-list {
