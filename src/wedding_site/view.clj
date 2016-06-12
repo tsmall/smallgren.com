@@ -1,7 +1,8 @@
 (ns wedding-site.view
   (:require [hiccup.page :as h]
             [wedding-site.db :as db]
-            [wedding-site.utils :as utils]))
+            [wedding-site.utils :as utils])
+  (use ring.util.anti-forgery))
 
 (defn- page
   "Template for a full HTML page."
@@ -39,6 +40,26 @@
           [:a {:href (str "/wedding/a/receptions/" (utils/date->slug (:day r)))}
            [:h1.item-list__heading (:city r) ", " (:state r)]
            [:h2.item-list__subhead (utils/formatted-date (:day r))]]])]])))
+
+(defn- labeled-inputs [field-specs]
+  (for [{:keys [id label type value]} field-specs]
+    [:div
+     [:label {:for id} (str label " ")]
+     [:input {:type type :id id :name id :value value}]]))
+
+(defn admin-reception [day]
+  (page
+   "Admin // Edit reception"
+   (let [reception (db/reception-by-day day)
+         slug-date (utils/date->slug (:day reception))
+         post-url (str "/wedding/a/receptions/" slug-date)]
+     [:form {:method "post" :href post-url}
+      (anti-forgery-field)
+      (labeled-inputs
+       [{:id "city", :label "City:", :type "text", :value (:city reception)}
+        {:id "state", :label "State:", :type "text", :value (:state reception)}
+        {:id "day", :label "Day:", :type "date", :value (:day reception)}])
+      [:input {:type "submit" :value "Save Changes"}]])))
 
 (defn- wedding-nav-bar
   "Navigation bar for the wedding pages."

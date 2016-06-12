@@ -14,6 +14,12 @@
   "Convert a Date into a URL-friendly string."
   (partial date-to-string date-format-slug))
 
+(defn slug->date
+  "Convert a URL-friendly date into an actual date."
+  [string]
+  (let [formatter (SimpleDateFormat. date-format-slug)]
+    (.parse formatter string)))
+
 (def formatted-date
   "Convert a Date into a reader-friendly string."
   (partial date-to-string date-format-ui))
