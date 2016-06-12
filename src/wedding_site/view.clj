@@ -1,5 +1,6 @@
 (ns wedding-site.view
   (:require [hiccup.page :as h]
+            [ring.util.response :as response]
             [wedding-site.db :as db]
             [wedding-site.utils :as utils])
   (use ring.util.anti-forgery))
@@ -60,6 +61,10 @@
         {:id "state", :label "State:", :type "text", :value (:state reception)}
         {:id "day", :label "Day:", :type "date", :value (:day reception)}])
       [:input {:type "submit" :value "Save Changes"}]])))
+
+(defn update-reception [original-day city state new-day]
+  (db/update-reception original-day city state new-day)
+  (response/redirect (str "/wedding/a/receptions/" new-day) :see-other))
 
 (defn- wedding-nav-bar
   "Navigation bar for the wedding pages."
