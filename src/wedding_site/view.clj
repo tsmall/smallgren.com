@@ -27,6 +27,19 @@
       [:a {:href "/wedding/a/receptions"}
        [:p.item-list__text "Manage receptions"]]]]]))
 
+(defn admin-reception-list []
+  (page
+   "Admin // Receptions"
+   (let [receptions (db/all-receptions)
+         receptions-by-date (sort-by :day receptions)]
+     [:section
+      [:ol.item-list
+       (for [r receptions-by-date]
+         [:li.item-list__item
+          [:a {:href (str "/wedding/a/receptions/" (utils/date->slug (:day r)))}
+           [:h1.item-list__heading (:city r) ", " (:state r)]
+           [:h2.item-list__subhead (utils/formatted-date (:day r))]]])]])))
+
 (defn- wedding-nav-bar
   "Navigation bar for the wedding pages."
   []
