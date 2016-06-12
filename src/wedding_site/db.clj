@@ -30,6 +30,14 @@
         ["SELECT DISTINCT city , state , day FROM reception WHERE day = ?"
          sql-date])))))
 
+(defn create-reception
+  "Create a new reception."
+  [city state day]
+  (let [sql-date (slug->sql-date day)]
+    (sql/with-db-connection [db spec]
+      (sql/insert! db :reception
+                   {:city city, :state state, :day sql-date, :info ""}))))
+
 (defn update-reception
   "Change one or more pieces of data for an existing reception."
   [original-day city state new-day]

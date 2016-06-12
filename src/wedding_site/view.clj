@@ -35,6 +35,8 @@
    (let [receptions (db/all-receptions)
          receptions-by-date (sort-by :day receptions)]
      [:section
+      [:p
+       [:a {:href "/wedding/a/receptions/new"} "Add a new reception"]]
       [:ol.item-list
        (for [r receptions-by-date]
          [:li.item-list__item
@@ -47,6 +49,21 @@
     [:div
      [:label {:for id} (str label " ")]
      [:input {:type type :id id :name id :value value}]]))
+
+(defn admin-new-reception []
+  (page
+   "Admin // New reception"
+   [:form {:method "post" :href "/wedding/a/receptions/new"}
+    (anti-forgery-field)
+    (labeled-inputs
+     [{:id "city", :label "City:", :type "text"}
+      {:id "state", :label "State:", :type "text"}
+      {:id "day", :label "Day:", :type "date"}])
+    [:input {:type "submit" :value "Create reception"}]]))
+
+(defn admin-create-reception [city state day]
+  (db/create-reception city state day)
+  (response/redirect "/wedding/a/receptions"))
 
 (defn admin-reception [day]
   (page

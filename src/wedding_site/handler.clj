@@ -8,6 +8,8 @@
   (GET "/" [] "Hello World")
   (GET "/wedding/a" [] (view/admin-home))
   (GET "/wedding/a/receptions" [] (view/admin-reception-list))
+  (GET "/wedding/a/receptions/new" [] (view/admin-new-reception))
+  (POST "/wedding/a/receptions/new" [city state day] (view/admin-create-reception city state day))
   (GET "/wedding/a/receptions/:day" [day] (view/admin-reception day))
   (POST "/wedding/a/receptions/:previous-day" [previous-day city state day] (view/update-reception previous-day city state day))
   (GET "/wedding" [] (view/wedding-home))
