@@ -18,6 +18,15 @@
      [:h1.page-title title]]
     body]))
 
+(defn admin-home []
+  (page
+   "Admin // Home"
+   [:nav
+    [:ul.item-list
+     [:li.item-list__item
+      [:a {:href "/wedding/a/receptions"}
+       [:p.item-list__text "Manage receptions"]]]]]))
+
 (defn- wedding-nav-bar
   "Navigation bar for the wedding pages."
   []
