@@ -114,7 +114,30 @@
   (page
    "Our story"
    (wedding-nav-bar)
-   [:p "Coming soon."]))
+   [:main
+    [:p
+     (str "Tom and Teresa met each other the way all great couples since Tom Hanks and Meg Ryan meet: "
+          "online, in New York, and having very likely crossed paths in the Upper West Side. "
+          "Despite living only five blocks apart in 2011 and 2012, fate gave them another chance in early 2015. "
+          "Tom reached out on eHarmony just in time; Teresa had nearly given up on the idea of dating in The City. "
+          "He impressed her, having met Glen Close and sung with the New Kids on the Block. "
+          "She surprised him, asking about the Winter Olympics instead of a monster flick. "
+          "They eventually met for a date at Chelsea Market where they talked about puppets, Hamilton, and Ruth Bader Ginsberg. "
+          "They have been nearly inseparable ever since.")]]
+   [:p
+    (str "They moved together to a cozy apartment in Fort Greene, Brooklyn, in September. "
+         "That same day they acquired a cat, Traila, who runs (around) the house. "
+         "After months of morning coffee and crossword rituals, art openings, trips Upstate and out West, "
+         "after seeing countless plays and musicals, Teresa came to the only natural conclusion: "
+         "that she wanted to ask Tom to marry her.")]
+   [:p
+    "So she did."]
+   [:p
+    (str "On January 17, Tom surprised Teresa with a day full of adventures around Manhattan. "
+         "But she surprised him, too, over drinks that night. "
+         "He said yes.")]
+   [:p
+    "And here we are."]))
 
 (defn road-trip []
   (let [receptions (db/all-receptions)
