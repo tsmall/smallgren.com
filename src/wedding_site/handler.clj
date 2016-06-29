@@ -2,19 +2,22 @@
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer :all]
+            [wedding-site.routes.core :as r.core]
+            [wedding-site.routes.wedding :as r.wedding]
+            [wedding-site.routes.wedding-admin :as r.admin]
             [wedding-site.view :as view]))
 
 (defroutes app-routes
-  (GET "/" [] "Hello World")
-  (GET "/wedding/a" [] (view/admin-home))
-  (GET "/wedding/a/receptions" [] (view/admin-reception-list))
-  (GET "/wedding/a/receptions/new" [] (view/admin-new-reception))
-  (POST "/wedding/a/receptions/new" [city state day] (view/admin-create-reception city state day))
-  (GET "/wedding/a/receptions/:day" [day] (view/admin-reception day))
-  (POST "/wedding/a/receptions/:previous-day" [previous-day city state day] (view/update-reception previous-day city state day))
-  (GET "/wedding" [] (view/wedding-home))
-  (GET "/wedding/road-trip" [] (view/road-trip))
-  (GET "/wedding/story" [] (view/wedding-story))
+  (GET r.core/home-template [] "Hello World")
+  (GET r.admin/home-template [] (view/admin-home))
+  (GET r.admin/reception-list-template [] (view/admin-reception-list))
+  (GET r.admin/new-reception-template [] (view/admin-new-reception))
+  (POST r.admin/new-reception-template [city state day] (view/admin-create-reception city state day))
+  (GET r.admin/single-reception-template [day] (view/admin-reception day))
+  (POST r.admin/edit-reception-template [previous-day city state day] (view/update-reception previous-day city state day))
+  (GET r.wedding/home-template [] (view/wedding-home))
+  (GET r.wedding/road-trip-template [] (view/road-trip))
+  (GET r.wedding/story-template [] (view/wedding-story))
   (route/resources "/r")
   (route/not-found "Not Found"))
 

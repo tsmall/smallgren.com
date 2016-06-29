@@ -2,6 +2,8 @@
   (:require [hiccup.page :as h]
             [ring.util.response :as response]
             [wedding-site.db :as db]
+            [wedding-site.routes.wedding :as r.wedding]
+            [wedding-site.routes.wedding-admin :as r.admin]
             [wedding-site.utils :as utils])
   (use ring.util.anti-forgery))
 
@@ -26,7 +28,7 @@
    [:nav
     [:ul.item-list
      [:li.item-list__item
-      [:a {:href "/wedding/a/receptions"}
+      [:a {:href (r.admin/reception-list-path)}
        [:p.item-list__text "Manage receptions"]]]]]))
 
 (defn admin-reception-list []
@@ -36,11 +38,11 @@
          receptions-by-date (sort-by :day receptions)]
      [:section
       [:p
-       [:a {:href "/wedding/a/receptions/new"} "Add a new reception"]]
+       [:a {:href (r.admin/new-reception-path)} "Add a new reception"]]
       [:ol.item-list
        (for [r receptions-by-date]
          [:li.item-list__item
-          [:a {:href (str "/wedding/a/receptions/" (utils/date->slug (:day r)))}
+          [:a {:href (r.admin/single-reception-path :day (utils/date->slug (:day r)))}
            [:h1.item-list__heading (:city r) ", " (:state r)]
            [:h2.item-list__subhead (utils/formatted-date (:day r))]]])]])))
 
@@ -53,7 +55,7 @@
 (defn admin-new-reception []
   (page
    "Admin // New reception"
-   [:form {:method "post" :href "/wedding/a/receptions/new"}
+   [:form {:method "post" :href (r.admin/new-reception-path)}
     (anti-forgery-field)
     (labeled-inputs
      [{:id "city", :label "City:", :type "text"}
@@ -63,14 +65,14 @@
 
 (defn admin-create-reception [city state day]
   (db/create-reception city state day)
-  (response/redirect "/wedding/a/receptions"))
+  (response/redirect (r.admin/reception-list-path)))
 
 (defn admin-reception [day]
   (page
    "Admin // Edit reception"
    (let [reception (db/reception-by-day day)
          slug-date (utils/date->slug (:day reception))
-         post-url (str "/wedding/a/receptions/" slug-date)]
+         post-url (r.admin/edit-reception-path :previous-day slug-date)]
      [:form {:method "post" :href post-url}
       (anti-forgery-field)
       (labeled-inputs
@@ -81,16 +83,16 @@
 
 (defn update-reception [original-day city state new-day]
   (db/update-reception original-day city state new-day)
-  (response/redirect (str "/wedding/a/receptions/" new-day) :see-other))
+  (response/redirect (r.admin/reception-list-path) :see-other))
 
 (defn- wedding-nav-bar
   "Navigation bar for the wedding pages."
   []
   [:nav
     [:ul.nav-bar
-     [:li.nav-bar__item [:a.nav-bar__link {:href "/wedding"} "Intro"]]
-     [:li.nav-bar__item [:a.nav-bar__link {:href "/wedding/story"} "Story"]]
-     [:li.nav-bar__item [:a.nav-bar__link {:href "/wedding/road-trip"} "Road Trip"]]]])
+     [:li.nav-bar__item [:a.nav-bar__link {:href (r.wedding/home-path)} "Intro"]]
+     [:li.nav-bar__item [:a.nav-bar__link {:href (r.wedding/story-path)} "Story"]]
+     [:li.nav-bar__item [:a.nav-bar__link {:href (r.wedding/road-trip-path)} "Road Trip"]]]])
 
 (defn wedding-home []
   (page
@@ -103,9 +105,9 @@
     [:p
      "Welcome to our wedding website. "
      "You can find out more information about "
-     [:a {:href "/wedding/road-trip"} "our road trip"]
+     [:a {:href (r.wedding/road-trip-path)} "our road trip"]
      ". And, if you're curious, you can read "
-     [:a {:href "/wedding/story"} "our story"]
+     [:a {:href (r.wedding/story-path)} "our story"]
      "."]]))
 
 (defn wedding-story []

@@ -5,6 +5,7 @@
   :main ^:skip-aot wedding-site.core
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/java.jdbc "0.6.0-rc2"]
+                 [clojurewerkz/route-one "1.2.0"]
                  [compojure "1.4.0"]
                  [hiccup "1.0.5"]
                  [org.postgresql/postgresql "9.4.1208.jre7"]
