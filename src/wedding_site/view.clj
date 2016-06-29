@@ -125,25 +125,25 @@
           "He impressed her, having met Glen Close and sung with the New Kids on the Block. "
           "She surprised him, asking about the Winter Olympics instead of a monster flick. "
           "They eventually met for a date at Chelsea Market where they talked about puppets, Hamilton, and Ruth Bader Ginsberg. "
-          "They have been nearly inseparable ever since.")]]
-   [:img.full-bleed {:src "/r/photos/niagara-falls.jpg"
-                     :alt "Photo of Tom and Teresa in front of Niagara Falls"}]
-   [:p
-    (str "They moved together to a cozy apartment in Fort Greene, Brooklyn, in September. "
-         "That same day they acquired a cat, Traila, who runs (around) the house. "
-         "After months of morning coffee and crossword rituals, art openings, trips Upstate and out West, "
-         "after seeing countless plays and musicals, Teresa came to the only natural conclusion: "
-         "that she wanted to ask Tom to marry her.")]
-   [:p
-    "So she did."]
-   [:p
-    (str "On January 17, Tom surprised Teresa with a day full of adventures around Manhattan. "
-         "But she surprised him, too, over drinks that night. "
-         "He said yes.")]
-   [:img.full-bleed {:src "/r/photos/he-said-yes.jpg"
-                     :alt "Photo of Tom and Teresa. Tom is holding his hand up to show his ring."}]
-   [:p
-    "And here we are."]))
+          "They have been nearly inseparable ever since.")]
+    [:img.full-bleed {:src "/r/photos/niagara-falls.jpg"
+                      :alt "Photo of Tom and Teresa in front of Niagara Falls"}]
+    [:p
+     (str "They moved together to a cozy apartment in Fort Greene, Brooklyn, in September. "
+          "That same day they acquired a cat, Traila, who runs (around) the house. "
+          "After months of morning coffee and crossword rituals, art openings, trips Upstate and out West, "
+          "after seeing countless plays and musicals, Teresa came to the only natural conclusion: "
+          "that she wanted to ask Tom to marry her.")]
+    [:p
+     "So she did."]
+    [:p
+     (str "On January 17, Tom surprised Teresa with a day full of adventures around Manhattan. "
+          "But she surprised him, too, over drinks that night. "
+          "He said yes.")]
+    [:img.full-bleed {:src "/r/photos/he-said-yes.jpg"
+                      :alt "Photo of Tom and Teresa. Tom is holding his hand up to show his ring."}]
+    [:p
+     "And here we are."]]))
 
 (defn road-trip []
   (let [receptions (db/all-receptions)
