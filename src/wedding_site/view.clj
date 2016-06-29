@@ -120,8 +120,9 @@
     [:p
      (str "Tom and Teresa met each other the way all great couples since Tom Hanks and Meg Ryan meet: "
           "online, in New York, and having very likely crossed paths in the Upper West Side. "
-          "Despite living only five blocks apart in 2011 and 2012, fate gave them another chance in early 2015. "
-          "Tom reached out on eHarmony just in time; Teresa had nearly given up on the idea of dating in The City. "
+          "Despite living only five blocks apart in 2011 and 2012, fate gave them another chance in early 2015. ")]
+    [:p
+     (str "Tom reached out on eHarmony just in time; Teresa had nearly given up on the idea of dating in The City. "
           "He impressed her, having met Glen Close and sung with the New Kids on the Block. "
           "She surprised him, asking about the Winter Olympics instead of a monster flick. "
           "They eventually met for a date at Chelsea Market where they talked about puppets, Hamilton, and Ruth Bader Ginsberg. "
@@ -140,10 +141,10 @@
      (str "On January 17, Tom surprised Teresa with a day full of adventures around Manhattan. "
           "But she surprised him, too, over drinks that night. "
           "He said yes.")]
-    [:img.full-bleed {:src "/r/photos/he-said-yes.jpg"
-                      :alt "Photo of Tom and Teresa. Tom is holding his hand up to show his ring."}]
     [:p
-     "And here we are."]]))
+     "And here we are."]
+    [:img.full-bleed {:src "/r/photos/he-said-yes.jpg"
+                      :alt "Photo of Tom and Teresa. Tom is holding his hand up to show his ring."}]]))
 
 (defn road-trip []
   (let [receptions (db/all-receptions)
