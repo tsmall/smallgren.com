@@ -17,6 +17,7 @@
   (POST r.admin/edit-reception-template [previous-day city state day info] (view/update-reception previous-day city state day info))
   (GET r.wedding/home-template [] (view/wedding-home))
   (GET r.wedding/road-trip-template [] (view/road-trip))
+  (GET r.wedding/rsvp-template [day] (view/rsvp day))
   (GET r.wedding/story-template [] (view/wedding-story))
   (route/resources "/r")
   (route/not-found "Not Found"))

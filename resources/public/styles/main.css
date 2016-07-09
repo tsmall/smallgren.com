@@ -15,16 +15,17 @@ body {
     max-width: 30rem;
 }
 
-h1, h2,
+h1, h2, h3,
 ol, ul,
 p {
     margin: 0;
     padding: 0;
 }
 
-h1, h2,
+h1, h2, h3,
 ul,
-p {
+p,
+form {
     padding: 0.7rem;
 }
 
@@ -45,6 +46,17 @@ body {
     font-size: 18px;
     font-weight: 300;
     line-height: 1.5rem;
+}
+
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+input,
+select {
+    padding: 0.1rem;
 }
 
 h1 {
@@ -130,4 +142,17 @@ h1 {
 
 .full-bleed {
     width: 100%;
+}
+
+.vertical-form__field {
+    display: flex;
+    flex-direction: column;
+}
+
+.vertical-form__field + .vertical-form__field {
+    margin-top: 1rem;
+}
+
+.vertical-form__input_short {
+    width: 3rem;
 }

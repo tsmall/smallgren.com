@@ -176,3 +176,55 @@
              [:a.link-button {:href (r.wedding/rsvp-path :day slug-date)} "RSVP"]]
             [:h1.item-list__heading (:city r) ", " (:state r)]
             [:h2.item-list__subhead (utils/formatted-date (:day r))]]))]])))
+
+(defn rsvp [day]
+  (let [reception (db/reception-by-day day)]
+    (page
+     (str (:city reception) ", " (:state reception))
+     (wedding-nav-bar)
+     [:h2 (utils/formatted-date (:day reception))]
+     [:main
+      [:section#info
+       [:p (:info reception)]]
+      [:section#rsvp
+       [:h3 "RSVP"]
+       [:p
+        "Fill out the form below to let us know if you can join us. "
+        "Please feel free to bring friends."]
+       [:form.vertical-form {:method "post" :href ""}
+        (anti-forgery-field)
+        [:div.vertical-form__field
+         [:label.vertical-form__label {:for "name"} "Your name"]
+         [:input.vertical-form__input {:type "text"
+                                       :id "name"
+                                       :name "name"
+                                       :placeholder "John Doe"
+                                       :autocomplete "name"
+                                       :required "true"}]]
+        [:div.vertical-form__field
+         [:label.vertical-form__label {:for "email"} "Your email address"]
+         [:input.vertical-form__input {:type "email"
+                                       :id "email"
+                                       :name "email"
+                                       :placeholder "john@example.com"
+                                       :autocomplete "email"
+                                       :inputmode "email"
+                                       :required "true"}]]
+        [:div.vertical-form__field
+         [:label.vertical-form__label {:for "attending"} "Can you come?"]
+         [:select {:id "attending" :name "attending"}
+          [:option {:value "yes"} "Yes!"]
+          [:option {:value "no"} "Unfortunately, no."]]]
+        [:div.vertical-form__field
+         [:label.vertical-form__label {:for "plus_ones"} "How many people are you bringing?"]
+         [:input.vertical-form__input_short {:type "number"
+                                             :id "plus_ones"
+                                             :name "plus_ones"
+                                             :inputmode "numeric"
+                                             :min "0"
+                                             :max "10"
+                                             :value "0"
+                                             :required "true"}]]
+        [:div.vertical-form__field
+         [:input.vertical-form__input {:type "submit"
+                                       :value "Send my RSVP"}]]]]])))
