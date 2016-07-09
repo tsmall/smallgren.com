@@ -15,7 +15,8 @@
 ID: 1
 Title: Hosts can add receptions
 Type: Enhancement
-Status: Started
+Status: Closed
+Reason: Done
 Description: As a host
 + I want to add a new reception to the trip
 + So guests will know that it's available.
@@ -90,7 +91,7 @@ Description: As a guest
 ID: 10
 Title: Guests can RSVP
 Type: Enhancement
-Status: New
+Status: Started
 Description: As a guest
 + I want to RSVP to a reception
 + So the host will know if I can make it.
@@ -138,7 +139,8 @@ Description: As a guest
 ID: 16
 Title: Guests can be mobile
 Type: Enhancement
-Status: New
+Status: Closed
+Reason: Done
 Description: As a guest
 + I want to be able to do everything from my phone
 + So I can update or see information when I'm away from my computer.
@@ -154,7 +156,8 @@ Description: PostgreSQL doesn't like having tables without primary keys.
 ID: 18
 Title: Use a custom font
 Type: Enhancement
-Status: New
+Status: Closed
+Reason: Done
 Description: As a host
 + I want to use a custom font
 + So it reflects the style and tone I want to set
