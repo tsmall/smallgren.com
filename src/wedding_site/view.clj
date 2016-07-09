@@ -142,6 +142,8 @@
           "But she surprised him, too, over drinks that night. "
           "He said yes.")]
     [:p
+     "Then they got a dog."]
+    [:p
      "And here we are."]
     [:img.full-bleed {:src "/r/photos/he-said-yes.jpg"
                       :alt "Photo of Tom and Teresa. Tom is holding his hand up to show his ring."}]]))
