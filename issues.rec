@@ -146,7 +146,8 @@ Description: As a guest
 ID: 17
 Title: Set primary key on reception table
 Type: Defect
-Status: New
+Status: Closed
+Reason: Fixed
 Description: PostgreSQL doesn't like having tables without primary keys.
 + Set a primary key for that table, and all new tables going forward.
 
