@@ -3,4 +3,5 @@
 
 (defroute home "/wedding")
 (defroute road-trip "/wedding/road-trip")
+(defroute rsvp "/wedding/road-trip/:day")
 (defroute story "/wedding/story")

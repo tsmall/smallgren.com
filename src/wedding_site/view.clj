@@ -164,6 +164,9 @@
      [:section#reception-list
       [:ol.item-list
        (for [r receptions-by-date]
-         [:li.item-list__item
-          [:h1.item-list__heading (:city r) ", " (:state r)]
-          [:h2.item-list__subhead (utils/formatted-date (:day r))]])]])))
+         (let [slug-date (utils/date->slug (:day r))]
+           [:li.item-list__item
+            [:p.item-list__action
+             [:a.link-button {:href (r.wedding/rsvp-path :day slug-date)} "RSVP"]]
+            [:h1.item-list__heading (:city r) ", " (:state r)]
+            [:h2.item-list__subhead (utils/formatted-date (:day r))]]))]])))
