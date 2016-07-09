@@ -9,6 +9,18 @@ Then they can choose to RSVP to any they are able to attend.
 You will need [Leiningen][] 2.0.0 or above installed.
 See `project.clj` for more information about the project's requirements.
 
+### Database
+
+This site persists data in a PostgreSQL database.
+To set up the database on your development environment,
+first create the `wedding` database:
+
+    $ createdb wedding
+
+Then you need to run the migrations.
+
+    wedding-site.core> (migration/migrate)
+
 ## Running
 
 To start a web server for the application, run:
