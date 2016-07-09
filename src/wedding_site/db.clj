@@ -27,23 +27,30 @@
       (first
        (sql/query
         db
-        ["SELECT DISTINCT city , state , day FROM reception WHERE day = ?"
+        ["SELECT DISTINCT city , state , day , info
+          FROM reception WHERE day = ?"
          sql-date])))))
 
 (defn create-reception
   "Create a new reception."
-  [city state day]
+  [city state day info]
   (let [sql-date (slug->sql-date day)]
     (sql/with-db-connection [db spec]
       (sql/insert! db :reception
-                   {:city city, :state state, :day sql-date, :info ""}))))
+                   {:city city
+                    :state state
+                    :day sql-date
+                    :info info}))))
 
 (defn update-reception
   "Change one or more pieces of data for an existing reception."
-  [original-day city state new-day]
+  [original-day city state new-day info]
   (let [sql-date (slug->sql-date new-day)
         original-sql-date (slug->sql-date original-day)]
    (sql/with-db-connection [db spec]
      (sql/update! db :reception
-                  {:city city, :state state, :day sql-date}
+                  {:city city
+                   :state state
+                   :day sql-date
+                   :info info}
                   ["day = ?" original-sql-date]))))

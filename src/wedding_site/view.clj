@@ -61,10 +61,13 @@
      [{:id "city", :label "City:", :type "text"}
       {:id "state", :label "State:", :type "text"}
       {:id "day", :label "Day:", :type "date"}])
+    [:div
+     [:label {:for "info"} "Info:"]
+     [:textarea {:id "info" :name "info"}]]
     [:input {:type "submit" :value "Create reception"}]]))
 
-(defn admin-create-reception [city state day]
-  (db/create-reception city state day)
+(defn admin-create-reception [city state day info]
+  (db/create-reception city state day info)
   (response/redirect (r.admin/reception-list-path)))
 
 (defn admin-reception [day]
@@ -79,10 +82,13 @@
        [{:id "city", :label "City:", :type "text", :value (:city reception)}
         {:id "state", :label "State:", :type "text", :value (:state reception)}
         {:id "day", :label "Day:", :type "date", :value (:day reception)}])
+      [:div
+       [:label {:for "info"} "Info:"]
+       [:textarea {:id "info" :name "info"} (:info reception)]]
       [:input {:type "submit" :value "Save Changes"}]])))
 
-(defn update-reception [original-day city state new-day]
-  (db/update-reception original-day city state new-day)
+(defn update-reception [original-day city state new-day info]
+  (db/update-reception original-day city state new-day info)
   (response/redirect (r.admin/reception-list-path) :see-other))
 
 (defn- wedding-nav-bar
