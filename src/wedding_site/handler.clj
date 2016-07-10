@@ -39,6 +39,8 @@
         (actions.admin/create-reception city state day info))
   (POST r.admin/edit-reception-template [previous-day city state day info]
         (actions.admin/update-reception previous-day city state day info))
+  (POST r.admin/delete-reception-template [day]
+        (actions.admin/delete-reception day))
 
   (route/resources "/r")
   (route/not-found "Not Found"))

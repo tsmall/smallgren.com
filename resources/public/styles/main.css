@@ -156,3 +156,7 @@ h1 {
 .vertical-form__input_short {
     width: 3rem;
 }
+
+.vertical-form__input_dangerous {
+    color: red;
+}

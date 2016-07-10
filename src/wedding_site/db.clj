@@ -55,6 +55,13 @@
                    :info info}
                   ["day = ?" original-sql-date]))))
 
+(defn delete-reception
+  "Delete an existing reception."
+  [day]
+  (let [sql-date (slug->sql-date day)]
+    (sql/with-db-connection [db spec]
+      (sql/delete! db :reception ["day = ?" sql-date]))))
+
 (defn- now
   "Get the current time, as a java.sql.Date object."
   []

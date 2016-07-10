@@ -74,7 +74,15 @@
      [:label.vertical-form__label {:for "info"} "Info:"]
      [:textarea.vertical-form__input {:id "info" :name "info"} (:info values)]]
     [:div.vertical-form__field
-     [:input.vertical-form__input {:type "submit" :value action-text}]]]))
+     [:input.vertical-form__input {:type "submit" :value action-text}]]]
+   (if (seq values)
+     [:form.vertical-form {:method "post"
+                           :action (r.admin/delete-reception-path
+                                    :day (:day values))}
+      (anti-forgery-field)
+      [:div.vertical-form__field
+       [:input.vertical-form__input_dangerous
+        {:type "submit" :value "Delete reception"}]]])))
 
 (defn reception-form
   "Return the response for the create or edit reception form."
@@ -90,14 +98,19 @@
                          :url (r.admin/edit-reception-path
                                :previous-day (:day reception))})))
 
-(defn create-reception
-  "Return the response for attempting to create a reception."
+(defn- redirect-to-reception-list
   []
   (response/redirect (r.admin/reception-list-path)
                      :see-other))
 
-(defn update-reception
+(def create-reception
+  "Return the response for attempting to create a reception."
+  redirect-to-reception-list)
+
+(def update-reception
   "Return the response for attempting to update a reception."
-  []
-  (response/redirect (r.admin/reception-list-path)
-                     :see-other))
+  redirect-to-reception-list)
+
+(def delete-reception
+  "Return the response for attempting to delete a reception."
+  redirect-to-reception-list)

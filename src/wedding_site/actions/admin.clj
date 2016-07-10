@@ -35,3 +35,9 @@
   [previous-day city state new-day info]
   (db/update-reception previous-day city state new-day info)
   (responders/update-reception))
+
+(defn delete-reception
+  "Delete a reception."
+  [day]
+  (db/delete-reception day)
+  (responders/delete-reception))
