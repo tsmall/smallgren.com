@@ -67,7 +67,7 @@
   []
   (-> (java.util.Date.)
       .getTime
-      java.sql.Date.))
+      java.sql.Timestamp.))
 
 (defn create-rsvp
   "Create a new RSVP record."
