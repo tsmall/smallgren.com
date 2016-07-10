@@ -55,6 +55,13 @@
                    :info info}
                   ["day = ?" original-sql-date]))))
 
+(defn- now
+  "Get the current time, as a java.sql.Date object."
+  []
+  (-> (java.util.Date.)
+      .getTime
+      java.sql.Date.))
+
 (defn create-rsvp
   "Create a new RSVP record."
   [{:keys [city state name email attending plus-ones]}]
@@ -67,10 +74,3 @@
                   :guest_email email
                   :attending attending
                   :plus_ones plus-ones})))
-
-(defn- now
-  "Get the current time, as a java.sql.Date object."
-  []
-  (-> (java.util.Date.)
-      .getTime
-      java.sql.Date.))
