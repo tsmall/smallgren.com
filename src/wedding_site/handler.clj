@@ -2,14 +2,18 @@
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer :all]
+            [wedding-site.actions.home :as actions.home]
             [wedding-site.actions.wedding :as actions.wedding]
-            [wedding-site.routes.core :as r.core]
+            [wedding-site.routes.home :as r.home]
             [wedding-site.routes.wedding :as r.wedding]
             [wedding-site.routes.wedding-admin :as r.admin]
             [wedding-site.view :as view]))
 
 (defroutes app-routes
-  (GET r.core/home-template [] "Hello World")
+  ;; /*
+  (GET r.home/home-template []
+       (actions.home/view-home))
+
   (GET r.admin/home-template [] (view/admin-home))
   (GET r.admin/reception-list-template [] (view/admin-reception-list))
   (GET r.admin/new-reception-template [] (view/admin-new-reception))
