@@ -18,6 +18,7 @@
   (GET r.wedding/home-template [] (view/wedding-home))
   (GET r.wedding/road-trip-template [] (view/road-trip))
   (GET r.wedding/rsvp-template [day] (view/rsvp day))
+  (POST r.wedding/new-rsvp-template [day name email attending plus_ones] (view/record-rsvp day name email attending plus_ones))
   (GET r.wedding/story-template [] (view/wedding-story))
   (route/resources "/r")
   (route/not-found "Not Found"))

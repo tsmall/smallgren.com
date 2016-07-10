@@ -178,7 +178,8 @@
             [:h2.item-list__subhead (utils/formatted-date (:day r))]]))]])))
 
 (defn rsvp [day]
-  (let [reception (db/reception-by-day day)]
+  (let [reception (db/reception-by-day day)
+        slug-date (utils/date->slug (:day reception))]
     (page
      (str (:city reception) ", " (:state reception))
      (wedding-nav-bar)
@@ -191,7 +192,7 @@
        [:p
         "Fill out the form below to let us know if you can join us. "
         "Please feel free to bring friends."]
-       [:form.vertical-form {:method "post" :href ""}
+       [:form.vertical-form {:method "post" :action (r.wedding/new-rsvp-path :day slug-date)}
         (anti-forgery-field)
         [:div.vertical-form__field
          [:label.vertical-form__label {:for "name"} "Your name"]
@@ -228,3 +229,16 @@
         [:div.vertical-form__field
          [:input.vertical-form__input {:type "submit"
                                        :value "Send my RSVP"}]]]]])))
+
+(defn record-rsvp [day name email attending plus-ones]
+  (let [is-attending (case attending
+                       "yes" true
+                       false)
+        num-plus-ones (Integer. plus-ones)
+        reception (db/reception-by-day day)]
+    (db/create-rsvp (assoc reception
+                         :name name
+                         :email email
+                         :attending is-attending
+                         :plus-ones num-plus-ones)))
+  (response/redirect (r.wedding/rsvp-path :day day) :see-other))

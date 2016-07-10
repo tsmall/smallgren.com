@@ -91,7 +91,8 @@ Description: As a guest
 ID: 10
 Title: Guests can RSVP
 Type: Enhancement
-Status: Started
+Status: Closed
+Reason: Done
 Description: As a guest
 + I want to RSVP to a reception
 + So the host will know if I can make it.
@@ -162,3 +163,17 @@ Description: As a host
 + I want to use a custom font
 + So it reflects the style and tone I want to set
 + And so the site looks more distinctive.
+
+ID: 19
+Title: Guests are notified of successful RSVP
+Type: Enhancement
+Description: As a guest
++ I want to be see some kind of feedback when I send an RSVP
++ So I know it was successfully sent
+
+ID: 20
+Title: Validate submitted RSVP data
+Type: Enhancement
+Description: As a guest
++ I want to see an understandable error message when I enter invalid RSVP data
++ So I know how to correct it
