@@ -39,14 +39,19 @@
    (let [receptions-by-date (sort-by :day receptions)]
      [:section
       [:p
-       [:a {:href (r.admin/new-reception-path)} "Add a new reception"]]
+       [:a.link-button
+        {:href (r.admin/new-reception-path)}
+        "Add a new reception"]]
       [:ol.item-list
        (for [r receptions-by-date]
          [:li.item-list__item
-          [:a {:href (r.admin/single-reception-path
-                      :day (utils/date->slug (:day r)))}
-           [:h1.item-list__heading (:city r) ", " (:state r)]
-           [:h2.item-list__subhead (utils/formatted-date (:day r))]]])]])))
+          [:p.item-list__action
+           [:a.link-button
+            {:href (r.admin/single-reception-path
+                    :day (utils/date->slug (:day r)))}
+            "Edit"]]
+          [:h1.item-list__heading (:city r) ", " (:state r)]
+          [:h2.item-list__subhead (utils/formatted-date (:day r))]])]])))
 
 (defn- labeled-inputs [field-specs]
   (for [{:keys [id label type value]} field-specs]
