@@ -167,6 +167,8 @@ Description: As a host
 ID: 19
 Title: Guests are notified of successful RSVP
 Type: Enhancement
+Status: Closed
+Reason: Done
 Description: As a guest
 + I want to be see some kind of feedback when I send an RSVP
 + So I know it was successfully sent
@@ -174,6 +176,7 @@ Description: As a guest
 ID: 20
 Title: Validate submitted RSVP data
 Type: Enhancement
+Status: New
 Description: As a guest
 + I want to see an understandable error message when I enter invalid RSVP data
 + So I know how to correct it
