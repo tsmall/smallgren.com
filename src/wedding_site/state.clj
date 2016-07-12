@@ -1,4 +1,5 @@
-(ns wedding-site.state)
+(ns wedding-site.state
+  (:require [clojure.edn]))
 
 (defn get-user-rsvps
   "Get the current user's RSVPs, or nil if they don't have any."
