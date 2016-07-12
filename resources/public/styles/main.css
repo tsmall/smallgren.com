@@ -6,6 +6,10 @@
     font-weight: normal;
 }
 
+strong {
+    font-weight: bold;
+}
+
 body {
     background-color: #b8c6bd;
     color: #0f0f0f;
@@ -88,6 +92,13 @@ h1 {
 
 .nav-bar__link {
     text-decoration: none;
+}
+
+.flash-message {
+    background-color: #e9fff1;
+    max-width: inherit;
+    font-weight: bold;
+    margin-bottom: 0.7rem;
 }
 
 .item-list {

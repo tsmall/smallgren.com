@@ -2,6 +2,7 @@
   (:require [hiccup.page :as h]
             [ring.util.response :as response]
             [wedding-site.routes.wedding :as r.wedding]
+            [wedding-site.state :as state]
             [wedding-site.utils :as utils])
   (use ring.util.anti-forgery))
 
@@ -71,22 +72,39 @@
             [:h1.item-list__heading (:city r) ", " (:state r)]
             [:h2.item-list__subhead (utils/formatted-date (:day r))]]))]])))
 
+(defn- confirmation-message
+  [reception user-rsvps]
+  (if (state/user-has-rsvpd? user-rsvps reception)
+    [:p.flash-message
+     "Thank you for RSVPing."]
+    nil))
+
+(defn- rsvp-message
+  [reception user-rsvps]
+  (if (state/user-has-rsvpd? user-rsvps reception)
+    [:p
+     [:strong "We got your RSVP. "]
+     "Thanks! "
+     "If you need to change your RSVP, fill out the form again."]
+    [:p
+     "Fill out the form below to let us know if you can join us. "
+     "Please feel free to bring friends."]))
+
 (defn reception
   "Return the response for an individual reception page."
-  [reception]
+  [reception user-rsvps]
   (let [slug-date (utils/date->slug (:day reception))]
     (page
      (str (:city reception) ", " (:state reception))
      (nav-bar)
+     (confirmation-message reception user-rsvps)
      [:h2 (utils/formatted-date (:day reception))]
      [:main
       [:section#info
        [:p (:info reception)]]
       [:section#rsvp
        [:h3 "RSVP"]
-       [:p
-        "Fill out the form below to let us know if you can join us. "
-        "Please feel free to bring friends."]
+       (rsvp-message reception user-rsvps)
        [:form.vertical-form {:method "post" :action (r.wedding/new-rsvp-path :day slug-date)}
         (anti-forgery-field)
         [:div.vertical-form__field
@@ -167,6 +185,7 @@
 
 (defn save-rsvp
   "Return the response for attempting to save an RSVP."
-  [day]
-  (response/redirect (r.wedding/rsvp-path :day day)
-                     :see-other))
+  [reception user-rsvps]
+  (let [day (:day reception)
+        response (response/redirect (r.wedding/rsvp-path :day day) :see-other)]
+    (state/add-user-rsvp-to-response response user-rsvps reception)))

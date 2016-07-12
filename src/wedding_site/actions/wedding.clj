@@ -15,9 +15,9 @@
 
 (defn view-road-trip-stop
   "Return the resource for an individual road trip stop."
-  [day-string]
+  [day-string user-rsvps]
   (let [reception (db/reception-by-day day-string)]
-    (responders/reception reception)))
+    (responders/reception reception user-rsvps)))
 
 (defn view-story
   "Return the resource for the wedding story."
@@ -26,7 +26,7 @@
 
 (defn save-rsvp
   "Save a new RSVP and return a resource indicating the result."
-  [day name email attending plus-ones]
+  [day name email attending plus-ones user-rsvps]
   (let [is-attending (case attending
                        "yes" true
                        false)
@@ -37,4 +37,4 @@
                            :email email
                            :attending is-attending
                            :plus-ones num-plus-ones))
-    (responders/save-rsvp day)))
+    (responders/save-rsvp reception user-rsvps)))
