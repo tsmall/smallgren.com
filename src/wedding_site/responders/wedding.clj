@@ -28,7 +28,8 @@
     [:ul.nav-bar
      [:li.nav-bar__item [:a.nav-bar__link {:href (r.wedding/home-path)} "Intro"]]
      [:li.nav-bar__item [:a.nav-bar__link {:href (r.wedding/story-path)} "Story"]]
-     [:li.nav-bar__item [:a.nav-bar__link {:href (r.wedding/road-trip-path)} "Road Trip"]]]])
+     [:li.nav-bar__item [:a.nav-bar__link {:href (r.wedding/road-trip-path)} "Road Trip"]]
+     [:li.nav-bar__item [:a.nav-bar__link {:href "https://www.wanderable.com/hm/smallgren"} "Registry"]]]])
 
 (defn home
   "Return the response for the wedding home page."
