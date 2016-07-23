@@ -29,7 +29,8 @@
      [:li.nav-bar__item [:a.nav-bar__link {:href (r.wedding/home-path)} "Intro"]]
      [:li.nav-bar__item [:a.nav-bar__link {:href (r.wedding/story-path)} "Story"]]
      [:li.nav-bar__item [:a.nav-bar__link {:href (r.wedding/road-trip-path)} "Road Trip"]]
-     [:li.nav-bar__item [:a.nav-bar__link {:href "https://www.wanderable.com/hm/smallgren"} "Registry"]]]])
+     [:li.nav-bar__item [:a.nav-bar__link {:href (r.wedding/registry-path)} "Registry"]]
+     ]])
 
 (defn home
   "Return the response for the wedding home page."
@@ -48,6 +49,23 @@
      ". And, if you're curious, you can read "
      [:a {:href (r.wedding/story-path)} "our story"]
      "."]]))
+
+(defn registry
+  "Return the response for the registry page."
+  []
+  (page
+   "Honeymoon registry"
+   (nav-bar)
+   [:main
+    [:p
+     "We live in a small New York apartment and have very little room for new posessions. "
+     "In lieu of objects, if you would like, we have set up a registry through Wanderable.com for you to help us go on our honeymoon this coming winter."]
+    [:p
+     "This will be our first trip overseas together, "
+     "and the first time for either of us to go to Scandinavia. "
+     "We're excited for grand adventures and building new memories together."]
+    [:p
+     [:a.link-button {:href "https://www.wanderable.com/hm/smallgren"} "See our registry"]]]))
 
 (defn road-trip
   "Return the response for the road trip page."

@@ -7,6 +7,11 @@
   []
   (responders/home))
 
+(defn view-registry
+  "Return the registry resource."
+  []
+  (responders/registry))
+
 (defn view-road-trip
   "Return the wedding road trip resource."
   []

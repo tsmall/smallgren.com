@@ -18,6 +18,8 @@
   ;; /wedding/*
   (GET r.wedding/home-template []
        (actions.wedding/view-home))
+  (GET r.wedding/registry-template []
+       (actions.wedding/view-registry))
   (GET r.wedding/road-trip-template []
        (actions.wedding/view-road-trip))
   (GET r.wedding/rsvp-template {{day :day} :params cookies :cookies}
