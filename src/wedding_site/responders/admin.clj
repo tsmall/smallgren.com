@@ -114,3 +114,27 @@
 (def delete-reception
   "Return the response for attempting to delete a reception."
   redirect-to-reception-list)
+
+(defn unauthenticated
+  "Return the response for an unauthenticated user."
+  []
+  (response/redirect (r.admin/login-path)
+                     :see-other))
+
+(defn login-form
+  "Returns the response for the admin login form."
+  []
+  (page
+   "Admin // Login"
+   [:form.vertical-form {:method "post" :action ""}
+    (anti-forgery-field)
+    (labeled-inputs
+     [{:id "password", :label "Password:", :type "password", :value ""}])
+    [:div.vertical-form__field
+     [:input.vertical-form__input {:type "submit" :value "Log in"}]]]))
+
+(defn login-successful
+  "Returns the response for a successful login."
+  []
+  (-> (response/redirect (r.admin/home-path) :see-other)
+      (assoc :session {:authenticated true})))

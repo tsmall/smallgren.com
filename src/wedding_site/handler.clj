@@ -33,20 +33,33 @@
                                    (state/get-user-rsvps cookies)))
 
   ;; /wedding/a/*
-  (GET r.admin/home-template []
-       (actions.admin/view-home))
-  (GET r.admin/reception-list-template []
-       (actions.admin/view-receptions))
-  (GET r.admin/new-reception-template []
-       (actions.admin/view-new-reception-form))
-  (GET r.admin/edit-reception-template [previous-day]
-       (actions.admin/view-edit-reception-form previous-day))
-  (POST r.admin/new-reception-template [city state day info]
-        (actions.admin/create-reception city state day info))
-  (POST r.admin/edit-reception-template [previous-day city state day info]
-        (actions.admin/update-reception previous-day city state day info))
-  (POST r.admin/delete-reception-template [day]
-        (actions.admin/delete-reception day))
+  (GET r.admin/login-template []
+       (actions.admin/view-login))
+  (POST r.admin/login-template [password]
+        (actions.admin/login password))
+  (GET r.admin/home-template {session :session}
+       (actions.admin/view-home session))
+  (GET r.admin/reception-list-template {session :session}
+       (actions.admin/view-receptions session))
+  (GET r.admin/new-reception-template {session :session}
+       (actions.admin/view-new-reception-form session))
+  (GET r.admin/edit-reception-template
+       {{:keys [previous-day]} :params
+        session :session}
+       (actions.admin/view-edit-reception-form session previous-day))
+  (POST r.admin/new-reception-template
+        {{:keys [city state day info]} :params
+         session :session}
+        (actions.admin/create-reception session city state day info))
+  (POST r.admin/edit-reception-template
+        {{:keys [previous-day city state day info]} :params
+         session :session}
+        (actions.admin/update-reception
+         session previous-day city state day info))
+  (POST r.admin/delete-reception-template
+        {{:keys [day]} :params
+         session :session}
+        (actions.admin/delete-reception session day))
 
   (route/resources "/r")
   (route/not-found "Not Found"))

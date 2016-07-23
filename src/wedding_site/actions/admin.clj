@@ -2,42 +2,78 @@
   (:require [wedding-site.db :as db]
             [wedding-site.responders.admin :as responders]))
 
+(defn- authenticated?
+  "Returns true if the current session is authenticated."
+  [session]
+  (contains? session :authenticated))
+
+(defn view-login
+  "Returns the admin login resource."
+  []
+  (responders/login-form))
+
+(defn login
+  "Attempts to log in the user."
+  [password]
+  (let [secret-key (or (System/getenv "ADMIN_SECRET")
+                       "secret")]
+    (if (= password secret-key)
+      (responders/login-successful)
+      (responders/unauthenticated))))
+
 (defn view-home
   "Return the admin section's home page resource."
-  []
-  (responders/home))
+  [session]
+  (if (authenticated? session)
+    (responders/home)
+    (responders/unauthenticated)))
 
 (defn view-receptions
   "Return the admin reception list resource."
-  []
-  (let [receptions (db/all-receptions)]
-    (responders/reception-list receptions)))
+  [session]
+  (if (authenticated? session)
+    (let [receptions (db/all-receptions)]
+      (responders/reception-list receptions))
+    (responders/unauthenticated)))
 
 (defn view-new-reception-form
   "Return the admin form for creating a new reception."
-  []
-  (responders/reception-form))
+  [session]
+  (if (authenticated? session)
+    (responders/reception-form)
+    (responders/unauthenticated)))
 
 (defn view-edit-reception-form
   "Return the admin form for editing a reception."
-  [day]
-  (let [reception (db/reception-by-day day)]
-    (responders/reception-form reception)))
+  [session day]
+  (if (authenticated? session)
+    (let [reception (db/reception-by-day day)]
+      (responders/reception-form reception))
+    (responders/unauthenticated)))
 
 (defn create-reception
   "Create a new reception."
-  [city state day info]
-  (db/create-reception city state day info)
-  (responders/create-reception))
+  [session city state day info]
+  (if (authenticated? session)
+    (do
+      (db/create-reception city state day info)
+      (responders/create-reception))
+    (responders/unauthenticated)))
 
 (defn update-reception
   "Update an existing reception."
-  [previous-day city state new-day info]
-  (db/update-reception previous-day city state new-day info)
-  (responders/update-reception))
+  [session previous-day city state new-day info]
+  (if (authenticated? session)
+    (do
+      (db/update-reception previous-day city state new-day info)
+      (responders/update-reception))
+    (responders/unauthenticated)))
 
 (defn delete-reception
   "Delete a reception."
-  [day]
-  (db/delete-reception day)
-  (responders/delete-reception))
+  [session day]
+  (if (authenticated? session)
+    (do
+      (db/delete-reception day)
+      (responders/delete-reception))
+    (responders/unauthenticated)))

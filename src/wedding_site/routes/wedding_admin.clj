@@ -7,3 +7,4 @@
 (defroute single-reception "/wedding/a/receptions/:day")
 (defroute edit-reception "/wedding/a/receptions/:previous-day")
 (defroute delete-reception "/wedding/a/receptions/:day/delete")
+(defroute login "/wedding/a/login")
