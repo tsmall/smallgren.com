@@ -33,4 +33,4 @@
   "Returns string labeling quantity with label, using simple
   pluralization rules."
   [quantity label]
-  (str quantity " " (pluralize "RSVP" quantity)))
+  (str quantity " " (pluralize label quantity)))
