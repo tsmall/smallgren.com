@@ -32,8 +32,14 @@
   "Return the admin reception list resource."
   [session]
   (if (authenticated? session)
-    (let [receptions (db/all-receptions)]
-      (responders/reception-list receptions))
+    (let [rsvp-stats (db/rsvp-stats)
+          receptions (db/all-receptions)]
+      (responders/reception-list
+       (map
+        #(merge % (db/stats-for-reception rsvp-stats
+                                          :city (:city %)
+                                          :state (:state %)))
+        receptions)))
     (responders/unauthenticated)))
 
 (defn view-new-reception-form

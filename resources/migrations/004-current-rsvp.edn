@@ -1,0 +1,20 @@
+;; Create (or drop) the current_rsvp view.
+{:up
+ ["CREATE VIEW current_rsvp AS
+   WITH latest_rsvp AS (
+     SELECT DISTINCT
+       guest_email , MAX(rsvp_time) AS rsvp_time
+     FROM
+       rsvp
+     GROUP BY
+       guest_email
+   )
+   SELECT DISTINCT
+     city , state , rsvp_time , guest_email, guest_name , attending , plus_ones
+   FROM
+     rsvp
+     NATURAL JOIN latest_rsvp
+   "]
+
+ :down
+ ["DROP VIEW current_rsvp;"]}

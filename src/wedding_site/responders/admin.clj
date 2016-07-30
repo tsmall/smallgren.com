@@ -50,6 +50,12 @@
             {:href (r.admin/single-reception-path
                     :day (utils/date->slug (:day r)))}
             "Edit"]]
+          [:p.item-list__action
+           [:a.link-button
+            {:href (r.admin/rsvps-path
+                    :city (:city r)
+                    :state (:state r))}
+            (utils/label (or (:num-rsvps r) 0) "RSVP")]]
           [:h1.item-list__heading (:city r) ", " (:state r)]
           [:h2.item-list__subhead (utils/formatted-date (:day r))]])]])))
 

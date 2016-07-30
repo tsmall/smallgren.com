@@ -23,3 +23,14 @@
 (def formatted-date
   "Convert a Date into a reader-friendly string."
   (partial date-to-string date-format-ui))
+
+(defn pluralize
+  "Adds an 's' to string if quantity is plural."
+  [string quantity]
+  (str string (when-not (= 1 quantity) "s")))
+
+(defn label
+  "Returns string labeling quantity with label, using simple
+  pluralization rules."
+  [quantity label]
+  (str quantity " " (pluralize "RSVP" quantity)))

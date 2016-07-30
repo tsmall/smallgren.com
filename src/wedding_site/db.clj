@@ -1,5 +1,6 @@
 (ns wedding-site.db
   (:require [clojure.java.jdbc :as sql]
+            [clojure.set :as set]
             [wedding-site.utils :as utils]))
 
 (def spec (or (System/getenv "DATABASE_URL")
@@ -81,3 +82,31 @@
                   :guest_email email
                   :attending attending
                   :plus_ones plus-ones})))
+
+(defn rsvp-stats
+  "Returns xset with statistics about RSVPs for each reception."
+  []
+  (sql/with-db-connection [db spec]
+    (into
+     #{}
+     (sql/query
+      db
+      "SELECT
+         city
+         , state
+         , count(*) AS num_rsvps
+         , count(plus_ones) + count(nullif(attending, false)) AS num_attending
+       FROM
+         current_rsvp
+       GROUP BY
+         city , state"
+      {:identifiers #(clojure.string/replace % "_" "-")}))))
+
+(defn stats-for-reception
+  "Gets map containing stats for a single reception, or nil."
+  [rsvp-stats &{:keys [city state]}]
+  (first
+   (set/select
+    #(and (= (:city %) city)
+          (= (:state %) state))
+    rsvp-stats)))

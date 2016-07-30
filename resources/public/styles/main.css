@@ -141,6 +141,10 @@ h1 {
 .item-list__action {
     float: right;
     margin-right: 0.7rem;
+    padding-right: 0.1rem;
+}
+.item-list__action+.item-list__action {
+    margin-right: 0;
 }
 
 .link-button {
