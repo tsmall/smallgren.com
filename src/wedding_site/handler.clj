@@ -13,53 +13,53 @@
 (defroutes app-routes
   ;; /*
   (GET r.home/home-template []
-       (actions.home/view-home))
+    (actions.home/view-home))
 
   ;; /wedding/*
   (GET r.wedding/home-template []
-       (actions.wedding/view-home))
+    (actions.wedding/view-home))
   (GET r.wedding/registry-template []
-       (actions.wedding/view-registry))
+    (actions.wedding/view-registry))
   (GET r.wedding/road-trip-template []
-       (actions.wedding/view-road-trip))
+    (actions.wedding/view-road-trip))
   (GET r.wedding/rsvp-template {{day :day} :params cookies :cookies}
-       (actions.wedding/view-road-trip-stop day (state/get-user-rsvps cookies)))
+    (actions.wedding/view-road-trip-stop day (state/get-user-rsvps cookies)))
   (GET r.wedding/story-template []
-       (actions.wedding/view-story))
+    (actions.wedding/view-story))
   (POST r.wedding/new-rsvp-template
-        {{:keys [day name email attending plus_ones]} :params
-         cookies :cookies}
-        (actions.wedding/save-rsvp day name email attending plus_ones
-                                   (state/get-user-rsvps cookies)))
+      {{:keys [day name email attending plus_ones]} :params
+       cookies :cookies}
+    (actions.wedding/save-rsvp day name email attending plus_ones
+                               (state/get-user-rsvps cookies)))
 
   ;; /wedding/a/*
   (GET r.admin/login-template []
-       (actions.admin/view-login))
+    (actions.admin/view-login))
   (POST r.admin/login-template [password]
-        (actions.admin/login password))
+    (actions.admin/login password))
   (GET r.admin/home-template {session :session}
-       (actions.admin/view-home session))
+    (actions.admin/view-home session))
   (GET r.admin/reception-list-template {session :session}
-       (actions.admin/view-receptions session))
+    (actions.admin/view-receptions session))
   (GET r.admin/new-reception-template {session :session}
-       (actions.admin/view-new-reception-form session))
+    (actions.admin/view-new-reception-form session))
   (GET r.admin/edit-reception-template
-       {{:keys [previous-day]} :params
-        session :session}
-       (actions.admin/view-edit-reception-form session previous-day))
+      {{:keys [previous-day]} :params
+       session :session}
+    (actions.admin/view-edit-reception-form session previous-day))
   (POST r.admin/new-reception-template
-        {{:keys [city state day info]} :params
-         session :session}
-        (actions.admin/create-reception session city state day info))
+      {{:keys [city state day info]} :params
+       session :session}
+    (actions.admin/create-reception session city state day info))
   (POST r.admin/edit-reception-template
-        {{:keys [previous-day city state day info]} :params
-         session :session}
-        (actions.admin/update-reception
-         session previous-day city state day info))
+      {{:keys [previous-day city state day info]} :params
+       session :session}
+    (actions.admin/update-reception
+     session previous-day city state day info))
   (POST r.admin/delete-reception-template
-        {{:keys [day]} :params
-         session :session}
-        (actions.admin/delete-reception session day))
+      {{:keys [day]} :params
+       session :session}
+    (actions.admin/delete-reception session day))
 
   (route/resources "/r")
   (route/not-found "Not Found"))
