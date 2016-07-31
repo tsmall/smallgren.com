@@ -152,7 +152,8 @@
           [:option {:value "yes"} "Yes!"]
           [:option {:value "no"} "Unfortunately, no."]]]
         [:div.vertical-form__field
-         [:label.vertical-form__label {:for "plus_ones"} "How many people are you bringing?"]
+         [:label.vertical-form__label {:for "plus_ones"}
+          "How many people will be attending in total?"]
          [:input.vertical-form__input_short {:type "number"
                                              :id "plus_ones"
                                              :name "plus_ones"
