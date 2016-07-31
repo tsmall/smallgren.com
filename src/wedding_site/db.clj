@@ -102,11 +102,35 @@
          city , state"
       {:identifiers #(clojure.string/replace % "_" "-")}))))
 
-(defn stats-for-reception
+(defn rsvp-stats-for-reception
   "Gets map containing stats for a single reception, or nil."
-  [rsvp-stats &{:keys [city state]}]
-  (first
-   (set/select
-    #(and (= (:city %) city)
-          (= (:state %) state))
-    rsvp-stats)))
+  ([reception]
+   (rsvp-stats-for-reception (rsvp-stats) reception))
+  ([rsvp-stats reception]
+   (first
+    (set/select
+     #(and (= (:city %) (:city reception))
+           (= (:state %) (:state reception)))
+     rsvp-stats))))
+
+(defn rsvps-for-reception
+  "Gets the specific RSVPs for a single reception."
+  [reception]
+  (sql/with-db-connection [db spec]
+    (sql/query
+     db
+     ["SELECT
+         city
+         , state
+         , guest_name
+         , guest_email
+         , attending
+         , plus_ones
+       FROM
+         current_rsvp
+       WHERE
+         city = ?
+         AND state = ?"
+      (:city reception)
+      (:state reception)]
+     {:identifiers #(clojure.string/replace % "_" "-")})))

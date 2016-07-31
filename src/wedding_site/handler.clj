@@ -47,6 +47,10 @@
       {{:keys [previous-day]} :params
        session :session}
     (actions.admin/view-edit-reception-form session previous-day))
+  (GET r.admin/rsvps-template
+      {{:keys [state city]} :params
+       session :session}
+    (actions.admin/view-rsvps-for-reception session state city))
   (POST r.admin/new-reception-template
       {{:keys [city state day info]} :params
        session :session}

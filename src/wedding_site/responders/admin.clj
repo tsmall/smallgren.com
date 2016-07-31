@@ -144,3 +144,37 @@
   []
   (-> (response/redirect (r.admin/home-path) :see-other)
       (assoc :session {:authenticated true})))
+
+(defn- rsvp-item
+  "Render the HTML for a single RSVP item."
+  [rsvp]
+  [:li.item-list__item
+   [:h1.item-list__heading (:guest-name rsvp)]
+   [:h2.item-list__subhead (utils/label (:plus-ones rsvp) "plus one")]
+   [:p.item-list__body
+    [:a {:href (str "mailto:" (:guest-email rsvp))} (:guest-email rsvp)]]])
+
+(defn rsvp-details
+  "Returns the RSVP details in HTML format."
+  [rsvp-info]
+  (page
+   "Admin // RSVPs"
+   [:h2 (str (:city rsvp-info) ", " (:state rsvp-info))]
+   [:table
+    [:tbody
+     [:tr
+      [:th "RSVPs:"]
+      [:td (:num-rsvps rsvp-info)]]
+     [:tr
+      [:th "Attendees:"]
+      [:td (:num-attending rsvp-info)]]]]
+   (let [split-rsvps (group-by :attending (:rsvps rsvp-info))
+         yeses (sort-by :guest-name (get split-rsvps true))
+         nos (sort-by :guest-name (get split-rsvps false))]
+     [:section {:id "rsvp-details"}
+      [:h2 "Yeses"
+       [:ol.item-list
+        (map rsvp-item yeses)]]
+      [:h2 "Nos"
+       [:ol.item-list
+        (map rsvp-item nos)]]])))

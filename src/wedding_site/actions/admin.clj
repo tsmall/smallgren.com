@@ -36,9 +36,7 @@
           receptions (db/all-receptions)]
       (responders/reception-list
        (map
-        #(merge % (db/stats-for-reception rsvp-stats
-                                          :city (:city %)
-                                          :state (:state %)))
+        #(merge % (db/rsvp-stats-for-reception rsvp-stats %))
         receptions)))
     (responders/unauthenticated)))
 
@@ -82,4 +80,15 @@
     (do
       (db/delete-reception day)
       (responders/delete-reception))
+    (responders/unauthenticated)))
+
+(defn view-rsvps-for-reception
+  "Returns the RSVP details resource."
+  [session state city]
+  (if (authenticated? session)
+    (let [reception {:city city, :state state}]
+      (responders/rsvp-details
+       (-> reception
+           (merge (db/rsvp-stats-for-reception reception))
+           (assoc :rsvps (db/rsvps-for-reception reception)))))
     (responders/unauthenticated)))
