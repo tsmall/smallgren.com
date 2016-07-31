@@ -128,20 +128,21 @@ h1 {
     border-bottom: 1px solid #9db0a4;
 }
 
-.item-list__heading {
-    font-size: 1.3rem;
+.item-list__heading,
+.item-list__subhead,
+.item-list__body {
+    font-size: 1rem;
 
     padding-top: 0;
     padding-bottom: 0;
 }
 
+.item-list__heading {
+    font-size: 1.3rem;
+}
+
 .item-list__subhead {
-    font-size: 1rem;
-
     color: #686868;
-
-    padding-top: 0;
-    padding-bottom: 0;
 }
 
 .item-list__action {
