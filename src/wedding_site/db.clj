@@ -72,7 +72,7 @@
 
 (defn create-rsvp
   "Create a new RSVP record."
-  [{:keys [city state name email attending plus-ones]}]
+  [{:keys [city state name email attending party-size]}]
   (sql/with-db-connection [db spec]
     (sql/insert! db :rsvp
                  {:city city
@@ -81,7 +81,7 @@
                   :guest_name name
                   :guest_email email
                   :attending attending
-                  :plus_ones plus-ones})))
+                  :party_size party-size})))
 
 (defn rsvp-stats
   "Returns xset with statistics about RSVPs for each reception."
@@ -95,7 +95,7 @@
          city
          , state
          , count(*) AS num_rsvps
-         , sum(plus_ones) + count(nullif(attending, false)) AS num_attending
+         , sum(party_size) AS num_attending
        FROM
          current_rsvp
        GROUP BY
@@ -125,7 +125,7 @@
          , guest_name
          , guest_email
          , attending
-         , plus_ones
+         , party_size
        FROM
          current_rsvp
        WHERE

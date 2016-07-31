@@ -150,7 +150,8 @@
   [rsvp]
   [:li.item-list__item
    [:h1.item-list__heading (:guest-name rsvp)]
-   [:h2.item-list__subhead (utils/label (:plus-ones rsvp) "plus one")]
+   [:h2.item-list__subhead
+    (str (utils/label (:party-size rsvp) "peep") " in party")]
    [:p.item-list__body
     [:a {:href (str "mailto:" (:guest-email rsvp))} (:guest-email rsvp)]]])
 

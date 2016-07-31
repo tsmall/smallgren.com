@@ -31,15 +31,15 @@
 
 (defn save-rsvp
   "Save a new RSVP and return a resource indicating the result."
-  [day name email attending plus-ones user-rsvps]
+  [day name email attending party-size user-rsvps]
   (let [is-attending (case attending
                        "yes" true
                        false)
-        num-plus-ones (Integer. plus-ones)
+        num-party-size (Integer. party-size)
         reception (db/reception-by-day day)]
     (db/create-rsvp (assoc reception
                            :name name
                            :email email
                            :attending is-attending
-                           :plus-ones num-plus-ones))
+                           :party-size num-party-size))
     (responders/save-rsvp reception user-rsvps)))

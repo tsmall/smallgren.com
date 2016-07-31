@@ -27,9 +27,9 @@
   (GET r.wedding/story-template []
     (actions.wedding/view-story))
   (POST r.wedding/new-rsvp-template
-      {{:keys [day name email attending plus_ones]} :params
+      {{:keys [day name email attending party_size]} :params
        cookies :cookies}
-    (actions.wedding/save-rsvp day name email attending plus_ones
+    (actions.wedding/save-rsvp day name email attending party_size
                                (state/get-user-rsvps cookies)))
 
   ;; /wedding/a/*
