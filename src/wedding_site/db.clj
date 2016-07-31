@@ -95,7 +95,7 @@
          city
          , state
          , count(*) AS num_rsvps
-         , count(plus_ones) + count(nullif(attending, false)) AS num_attending
+         , sum(plus_ones) + count(nullif(attending, false)) AS num_attending
        FROM
          current_rsvp
        GROUP BY
