@@ -21,20 +21,26 @@ body {
 
 h1, h2, h3,
 ol, ul,
-p {
+p{
     margin: 0;
     padding: 0;
 }
 
 h1, h2, h3,
-ul,
+form,
 p,
-form {
+table,
+ul {
     padding: 0.7rem;
 }
 
 p {
     max-width: 25rem;
+}
+
+th {
+    text-align: left;
+    padding-right: 0.5rem;
 }
 
 @media all and (min-width: 600px) {
