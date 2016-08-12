@@ -61,7 +61,7 @@
    (nav-bar)
    [:main
     [:p
-     "We live in a small New York apartment and have very little room for new posessions. "
+     "We live in a small New York apartment and have very little room for new possessions. "
      "In lieu of objects, if you would like, we have set up a registry through Wanderable.com for you to help us go on our honeymoon this coming winter."]
     [:p
      "This will be our first trip overseas together, "
