@@ -182,7 +182,9 @@
      (str "Tom reached out on eHarmony just in time; Teresa had nearly given up on the idea of dating in The City. "
           "He impressed her, having met Glen Close and sung with the New Kids on the Block. "
           "She surprised him, asking about the Winter Olympics instead of a monster flick. "
-          "They eventually met for a date at Chelsea Market where they talked about puppets, Hamilton, and Ruth Bader Ginsberg. "
+          "They eventually met for a date at Chelsea Market where they talked about puppets, ")
+     [:em "Hamilton"]
+     (str ", and Ruth Bader Ginsberg. "
           "They have been nearly inseparable ever since.")]
     [:img.full-bleed {:src "/r/photos/niagara-falls.jpg"
                       :alt "Photo of Tom and Teresa in front of Niagara Falls"}]
