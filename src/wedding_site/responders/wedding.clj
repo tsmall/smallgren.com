@@ -39,8 +39,7 @@
   "Return the response for the wedding home page."
   []
   (page
-   ;; TODO (TS 2016-05-30) Change to "We got married!" after Oct 8, 2016.
-   "We're getting married!"
+   "We got married!"
    (nav-bar)
    [:img.full-bleed {:src "/r/photos/card.jpg"
                      :alt "Cartoon drawing of Teresa and Tom"}]
