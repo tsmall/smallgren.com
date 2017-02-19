@@ -15,6 +15,13 @@
   (GET r.home/home-template []
     (actions.home/view-home))
 
+  ;; /stories/*
+  (route/resources "/stories/r" {:root "stories/public"})
+  (GET "/stories" []
+    (clojure.java.io/resource "stories/index.html"))
+  (GET ["/stories/:year" :year #"[^r]+"] [year]
+    (clojure.java.io/resource (str "stories/" year "/index.html")))
+
   ;; /wedding/*
   (GET r.wedding/home-template []
     (actions.wedding/view-home))
