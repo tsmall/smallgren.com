@@ -1,8 +1,0 @@
-;; Add a primary key to the reception relation.
-{:up
- ["ALTER TABLE reception
-   ADD CONSTRAINT reception_pkey PRIMARY KEY ( city , state );"]
-
- :down
- ["ALTER TABLE reception
-   DROP CONSTRAINT reception_pkey;"]}
