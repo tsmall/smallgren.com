@@ -1,17 +1,7 @@
 .DS_Store
 
-/checkouts
-/classes
-/lib
-/target
-
-*.jar
-*.class
-/.lein-*
+.lein-*
 .nrepl-port
 .cpcache
-
-pom.xml
-pom.xml.asc
 
 media/
