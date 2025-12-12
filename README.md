@@ -1,117 +1,86 @@
-# wedding-site
+# smallgren.com - Annual Christmas Card Website
 
-This is the code for running a website for a wedding.
-The primary purpose for this software is to let people see where all of our receptions are.
-Then they can choose to RSVP to any they are able to attend.
+This is the code for our annual "Christmas card" website.
+We use this to share our yearly updates with family and friends.
 
-## Prerequisites
+## About
 
-You will need [Leiningen][] 2.0.0 or above installed.
-See `project.clj` for more information about the project's requirements.
+The website serves as our digital Christmas card, featuring:
+- Annual stories and updates from our family
+- Photo galleries from each year
+- Minimal, hand-crafted HTML and CSS
+- Lightweight JavaScript where needed
 
-### Database
+## Technical Implementation
 
-This site persists data in a PostgreSQL database.
-To set up the database on your development environment,
-first create the `wedding` database:
+This is a **completely static website** with no server-side processing:
 
-    $ createdb wedding
+- **Frontend**: Hand-written HTML, CSS, and minimal JavaScript
+- **Structure**: Each year has its own directory under `stories/` with:
+  - `index.html` - Main content for that year
+  - Year-specific CSS files (e.g., `2024.css`)
+  - Media assets in `media/` subdirectories (not committed)
+- **Shared assets**: Common styles and scripts in `stories/public/`
 
-Then you need to run the migrations.
+## Image and Video Preparation
 
-    wedding-site.core> (migration/migrate)
+The project includes scripts for preparing media assets before uploading:
 
-## Running
+- **Image conversion**: Scripts in the `scripts/` directory handle:
+  - Resizing and optimizing images
+  - Creating web-friendly formats
+  - Batch processing for entire year directories
+- **Video encoding**: Scripts for converting and optimizing video files
 
-To start a web server for the application, run:
+## Development
 
-    lein ring server
+### Prerequisites
 
-You can also run the web server from within a REPL:
+No special prerequisites are needed for the static site itself.
+The media preparation scripts require specific tools:
 
-    user=> (use 'wedding-site.core :reload)
-    user=> (def server (run {:join? false}))
+- **ImageMagick** (for `convert` command) - used by image conversion scripts
+- **FFmpeg** - used by video encoding and poster generation scripts
+- **Clojure** (with AWS SDK dependencies) - used by AWS management utilities
+- Basic Unix shell tools (bash)
 
-And you can stop it and restart it:
+### Running Locally
 
-    user=> (.stop server)
-    user=> (def server (run {:join? false}))
+Since this is a static site, simply:
 
-(Thanks to Dave Ray for explaining how to do that
-on [his blog][along came betty].)
+1. Clone the repository
+2. Start a local web server
+3. Visit http://localhost:8000/stories/
 
-## Contributing
+```bash
+# Using Python's built-in server (Python 3)
+python3 -m http.server 8000
+```
 
-### Code Style
+### Adding a New Year
 
-This project uses ideas from both [SMACSS][] and [BEM][].
-From SMACSS I've taken the idea of categories of styles.
-So far I'm using the "Base" and "Module" categories.
-I've taken the rest of the ideas from BEM.
-In particular I've chosen to adopt their naming conventions.
+To add content for a new year:
 
-### Commit Messages
+1. Create a new directory under `stories/` (e.g., `stories/2025/`)
+2. Add your `index.html` file with the year's content
+3. Create any year-specific CSS in a file named `2025.css`
+4. Place media assets in `stories/2025/media/`
+5. Use the preparation scripts to optimize images/videos before committing
 
-This project follow's [Angular's commit message format][commit format].
-Refer to the linked document for the full details.
-But here's a quick reference:
+## Media Preparation Scripts
 
-    <type>(<scope>): <subject>
-    <BLANK LINE>
-    <body>
-    <BLANK LINE>
-    <footer>
+The `scripts/` directory contains utilities for preparing media:
 
-The type must be one of the following:
-
-* **feat**: A new feature
-* **fix**: A bug fix
-* **docs**: Documentation only changes
-* **style**: Changes that do not affect the meaning of the code
-  (white-space, formatting, missing semi-colons, etc)
-* **refactor**: A code code change that neither fixes a bug or adds a feature
-* **perf**: A code change that improves performance
-* **test**: Adding missing tests
-* **chore**: Changes to the build process
-  or auxiliary tools and libraries
-  such as documentation generation
-
-### Issues
-
-This project uses a text file in [GNU Recutils][] format to track issues.
-These include both enhancements and defects.
-This way we get a bug database that
-(a) is easy to manage in a text editor,
-(b) lives in the repository,
-and (c) can still be flexibly queried.
-
-Here are a few useful queries.
-Note that you have to have recutils installed.
-
-    $ # Show all open enhancements.
-    $ recsel -e "Type = 'Enhancement' && Status != 'Closed'" issues.rec
-
-    $ # Show all open defects.
-    $ recsel -e "Type = 'Enhancement' && Status != 'Closed'" issues.rec
-
-    $ # Count the number of open issues by type.
-    $ recsel -e "Status != 'Closed'" -p "Type,Count(ID):Count" -G "Type" issues.rec
-
-    $ # Verify there are no syntactic or formatting problems.
-    $ recfix --check issues.rec
+- `convert.sh` / `convert-year.sh` - Image conversion utilities
+- `encode.sh` / `encode-year.sh` - Video encoding utilities
+- `poster.sh` - Generate video poster frames
+- `all-posters.sh` - Process posters for all videos
 
 ## License
 
-Copyright © 2016 Tom Small III.
+Copyright © 2016-2025 Tom Small III.
 
 Distributed under the [Eclipse Public License][epl], the same as Clojure.
 
-
 <!-- References -->
-[along came betty]: http://blog.darevay.com/2010/11/compojure-the-repl-and-vars/
-[bem]: https://en.bem.info
-[commit format]: https://gist.github.com/brianclements/841ea7bffdb01346392c
 [epl]: https://eclipse.org/org/documents/epl-v10.php
-[gnu recutils]: https://www.gnu.org/software/recutils/
-[leiningen]: https://github.com/technomancy/leiningen
-[smacss]: https://smacss.com
