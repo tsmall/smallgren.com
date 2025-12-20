@@ -11,5 +11,5 @@ input_file="$1"
 # Get the filename without the extension ...
 image_name="${input_file%.*}"
 
-convert "${input_file}" "${image_name}.avif"
-convert "${input_file}" "${image_name}.webp"
+magick "${input_file}" "${image_name}.avif"
+magick "${input_file}" "${image_name}.webp"

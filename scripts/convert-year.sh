@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Example:
-# $ bash scripts/convert-year.sh resources/stories/2024
+# $ bash scripts/convert-year.sh stories/2024
 
 set -o errexit
 set -o nounset
@@ -14,7 +14,7 @@ convert="$HOME/Projects/smallgren.com/scripts/convert.sh"
 year_path="$1"
 
 # Convert all of the images for that year.
-for image in "${year_path}"/media/*.jpg
+for image in "${year_path}"/media/*.jpeg
 do
   echo "Converting: $image"
   bash "$convert" "$image"

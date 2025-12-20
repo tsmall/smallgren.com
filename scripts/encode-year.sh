@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Example:
-# $ bash scripts/encode-year.sh resources/stories/2024
+# $ bash scripts/encode-year.sh stories/2024
 
 set -o errexit
 set -o nounset
